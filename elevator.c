@@ -39,8 +39,15 @@ PersonList* exitElevator(Elevator *e){
 
 PersonList* enterElevator(Elevator *e, PersonList *list){
     /*function that returns a PersonList pointer of people remaining on the waiting list for the elevator, the PersonList of people in the elevator is so modified*/
-    
+    int place = e -> capacity - len_perlist(e -> persons);
+    while ((place != 0) && (list != NULL)){
+        e -> persons = insert(list -> person, e -> persons);
+        place -= 1;
+        list = list -> next;
+    }
+    return list; 
 };
+
 void stepElevator(Building *b);
 
 int main(){
@@ -49,7 +56,7 @@ int main(){
     PersonList* l = NULL;
     l = insert(pers1, l);
     l = insert(pers2, l);
-    Elevator* elev = create_elevator(5, 3, l);
+    Elevator* elev = create_elevator(2, 3, l);
     printf("les personnes dans l'ascensseur de base : ");
     affiche_perlist(elev -> persons);
     printf("ceux qui restent :");
@@ -57,5 +64,19 @@ int main(){
     affiche_perlist(elev -> persons);
     printf("ceux qui sortent");
     affiche_perlist(out);
+
+    PersonList* waiting = NULL;
+    Person* pers3 = createPerson(3, 1);
+    Person* pers4 = createPerson(3, 2);
+    waiting = insert(pers3, waiting);
+    waiting = insert(pers4, waiting);
+    printf("ceux qui attendent :");
+    affiche_perlist(waiting);
+    waiting = enterElevator(elev, waiting);
+    printf("ceux qui attendent apres le passage de l'ascenseur :");
+    affiche_perlist(waiting);
+    printf("ceux qui sont dedans apres passage :");
+    affiche_perlist(elev -> persons);
+
     return 0;
 };

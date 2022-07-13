@@ -3,18 +3,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 Person* createPerson(int src, int dest){
-    Person* p = malloc(sizeof(Person));
+    //initialize a type Person with attributes src and dest
+    Person *p;
+    p = (Person*)malloc(sizeof(Person));
     (*p).src = src;
     (*p).dest = dest;
     return p;
 };
 
 PersonList* insert(Person *p, PersonList *list){
-    PersonList* pl = malloc(sizeof(PersonList));
+    //add a type Person to a PersonList
+    PersonList *pl;
+    pl = (PersonList*)malloc(sizeof(PersonList));
     (*pl).person = p;
     (*pl).next = list;
     return pl;
+};
+
+void affiche_perlist(PersonList* pl){
+    PersonList* actuel = pl;
+    while (actuel != NULL) {
+        printf("(src : %d, dest : %d) -> ", actuel -> person -> src, actuel -> person -> dest);
+        actuel = actuel -> next;
+    }
+    printf("null\n");
 };
 
 /*int main(){
@@ -23,7 +37,6 @@ PersonList* insert(Person *p, PersonList *list){
     PersonList* l = NULL;
     l = insert(pers1, l);
     l = insert(pers2, l);
-    printf("1ere pers : dest = %d et src = %d\n2eme pers : dest = %d et src = %d\n", l->person->dest, l->person->src, l->next->person->dest, l->next->person->src);
-
+    affiche_perlist(l);
     return 0;
 };*/

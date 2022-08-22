@@ -33,7 +33,12 @@ PersonList* exitElevator(Elevator *e){
         }
         actuel = actuel -> next;
     }
-    e -> persons = rest;
+    //actuel PersonList is now used to invert rest PersonList
+    while (rest != NULL) {
+        actuel = insert(rest -> person, actuel);
+        rest = rest -> next;
+    }
+    e -> persons = actuel;
     return result;
 };
 
@@ -48,9 +53,26 @@ PersonList* enterElevator(Elevator *e, PersonList *list){
     return list; 
 };
 
-void stepElevator(Building *b);
+void stepElevator(Building *b){
+    /*Person* pers_nul = createPerson(-1, -1);*/
+    PersonList* out = NULL;
+    /*out = insert(persnul, out);*/
+    if (b -> elevator -> currentFloor == b -> elevator -> targetFloor){
+        out = exitElevator(b -> elevator);
+        (b -> waitingLists)[b -> elevator -> currentFloor] = enterElevator(b -> elevator, (b -> waitingLists)[b -> elevator -> currentFloor]);
+        /*b -> elevator -> targetFloor = b -> elevator -> persons -> person -> dest;*/
+    }
+    else{
+        if (b -> elevator -> currentFloor > b -> elevator -> targetFloor){
+            b -> elevator -> currentFloor -= 1;
+        }
+        else {
+            b -> elevator -> currentFloor += 1;
+        }
+    }
+};
 
-int main(){
+/*int main(){
     Person* pers1 = createPerson(0, 3);
     Person* pers2 = createPerson(1, 0);
     PersonList* l = NULL;
@@ -79,4 +101,4 @@ int main(){
     affiche_perlist(elev -> persons);
 
     return 0;
-};
+};*/

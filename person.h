@@ -16,5 +16,6 @@ typedef struct _PersonList {
 Person* createPerson(int src, int dest);
 PersonList* insert(Person *p, PersonList *list);
 void affiche_perlist(PersonList *pl);
+int len_perlist(PersonList* pl);
 
 #endif

@@ -76,8 +76,8 @@ PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
   // Initialize building and elevator
   int capacity = 3;
   int currentFloor = 0;
-  //Elevator *elevator = create_elevator(capacity, currentFloor , NULL);
-  //Building *building = create_building(nbFloor, elevator, waitingLists);
+  Elevator *elevator = create_elevator(capacity, currentFloor , NULL);
+  Building *building = create_building(nbFloor, elevator, waitingLists);
 
   // Initialize ncurse display
   initscr(); // initialize ncurses
@@ -96,18 +96,18 @@ PersonList **waitingLists = malloc(nbFloor*sizeof(PersonList*));
     } else {
       int level = input - '0';
       if(0 <= level && level < nbFloor) {
-	 //Building->elevator->targetFloor = level;
+	      building -> elevator -> targetFloor = level;
       }
     }
 
     // Update state machine of elevator !!!!
 
-    //stepElevator(building);
+    stepElevator(building);
 
     wclear(win);   // clear display area
     box(win, 0,0); // display border of window
 
-    //DisplayBuilding(win, building);
+    DisplayBuilding(win, building);
 
     wrefresh(win); // actual display function
 

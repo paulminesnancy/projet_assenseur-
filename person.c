@@ -31,12 +31,24 @@ void affiche_perlist(PersonList* pl){
     printf("null\n");
 };
 
-/*int main(){
+int len_perlist(PersonList* pl){
+    /*function that returns the length of a PersonList*/
+    PersonList* actuel = pl;
+    int len = 0;
+    while (actuel != NULL) {
+        len += 1;
+        actuel = actuel -> next;
+    }
+    return len;
+}
+
+/* int main(){
     Person* pers1 = createPerson(0, 3);
     Person* pers2 = createPerson(1, 0);
     PersonList* l = NULL;
     l = insert(pers1, l);
     l = insert(pers2, l);
     affiche_perlist(l);
+    printf("longueure : %d\n", len_perlist(l));
     return 0;
-};*/
+}; */

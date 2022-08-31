@@ -23,6 +23,7 @@ PersonList* insert(Person *p, PersonList *list){
 };
 
 void affiche_perlist(PersonList* pl){
+    /*function alowing to visualize the content of a PersonList*/
     PersonList* actuel = pl;
     while (actuel != NULL) {
         printf("(src : %d, dest : %d) -> ", actuel -> person -> src, actuel -> person -> dest);
@@ -42,13 +43,3 @@ int len_perlist(PersonList* pl){
     return len;
 }
 
-/* int main(){
-    Person* pers1 = createPerson(0, 3);
-    Person* pers2 = createPerson(1, 0);
-    PersonList* l = NULL;
-    l = insert(pers1, l);
-    l = insert(pers2, l);
-    affiche_perlist(l);
-    printf("longueure : %d\n", len_perlist(l));
-    return 0;
-}; */

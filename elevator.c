@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 Elevator *create_elevator(int capacity, int currentFloor, PersonList *persons){
+    /*function generating an Elevator* with the input atribute*/
     Elevator* e = malloc(sizeof(Elevator));
     e -> capacity = capacity;
     e -> currentFloor = currentFloor;
@@ -13,6 +14,7 @@ Elevator *create_elevator(int capacity, int currentFloor, PersonList *persons){
 };
 
 Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingLists){
+    /*ficntion that create a Building* with the input atribute*/
     Building* b = malloc(sizeof(Building));
     b -> nbFloor = nbFloor; 
     b -> elevator = elevator;
@@ -71,34 +73,3 @@ void stepElevator(Building *b){
         }
     }
 };
-
-/*int main(){
-    Person* pers1 = createPerson(0, 3);
-    Person* pers2 = createPerson(1, 0);
-    PersonList* l = NULL;
-    l = insert(pers1, l);
-    l = insert(pers2, l);
-    Elevator* elev = create_elevator(2, 3, l);
-    printf("les personnes dans l'ascensseur de base : ");
-    affiche_perlist(elev -> persons);
-    printf("ceux qui restent :");
-    PersonList* out = exitElevator(elev); 
-    affiche_perlist(elev -> persons);
-    printf("ceux qui sortent");
-    affiche_perlist(out);
-
-    PersonList* waiting = NULL;
-    Person* pers3 = createPerson(3, 1);
-    Person* pers4 = createPerson(3, 2);
-    waiting = insert(pers3, waiting);
-    waiting = insert(pers4, waiting);
-    printf("ceux qui attendent :");
-    affiche_perlist(waiting);
-    waiting = enterElevator(elev, waiting);
-    printf("ceux qui attendent apres le passage de l'ascenseur :");
-    affiche_perlist(waiting);
-    printf("ceux qui sont dedans apres passage :");
-    affiche_perlist(elev -> persons);
-
-    return 0;
-};*/

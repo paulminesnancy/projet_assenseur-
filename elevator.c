@@ -14,7 +14,7 @@ Elevator *create_elevator(int capacity, int currentFloor, PersonList *persons){
 };
 
 Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingLists){
-    /*ficntion that create a Building* with the input atribute*/
+    /*ficntion that create a Building* with the input atribute*/""
     Building* b = malloc(sizeof(Building));
     b -> nbFloor = nbFloor; 
     b -> elevator = elevator;
